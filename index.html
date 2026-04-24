@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel and Olivares Family Euro Trip 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fdf6f0; color: #2C3E50; line-height: 1.6; }
+    :root {
+      --navy: #2C3E50; --gold: #FFC312; --orange: #f4531c; --amber: #f4a921;
+      --cream: #fdf6f0; --mid: #666; --white: #fff;
+    }
+
+    /* HERO */
+    .hero { position: relative; height: 100vh; min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('trip-images/colosseum.png') center/cover no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(91,127,192,0.88) 0%, rgba(192,80,128,0.78) 48%, rgba(240,160,32,0.88) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 800px; }
+    .hero-eyebrow { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(1.9rem, 5vw, 3.6rem); color: white; font-weight: 800; line-height: 1.15; margin-bottom: 0.5rem; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-dates { font-size: 1rem; color: rgba(255,255,255,0.88); margin-bottom: 2rem; letter-spacing: 0.06em; }
+    .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .hero-tag { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.38); color: white; border-radius: 2rem; padding: 0.35rem 1.1rem; font-size: 0.85rem; font-weight: 600; }
+    .hero-scroll { position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; animation: bob 2s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--navy); overflow-x: auto; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav ul { list-style: none; display: flex; justify-content: center; white-space: nowrap; min-width: max-content; margin: 0 auto; }
+    nav a { display: block; padding: 0.9rem 1rem; color: rgba(255,255,255,0.62); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; border-bottom: 3px solid transparent; transition: all 0.18s; }
+    nav a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ROUTE MAP */
+    .map-section { background: var(--navy); padding: 3rem 1.5rem; text-align: center; }
+    .map-section h2 { color: var(--gold); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .map-section p { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .map-section img { width: 100%; max-width: 960px; border-radius: 14px; box-shadow: 0 24px 64px rgba(0,0,0,0.5); display: block; margin: 0 auto; }
+
+    /* STATS */
+    .stats { background: linear-gradient(135deg, var(--orange), var(--amber)); padding: 2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; text-align: center; }
+    .stat strong { display: block; font-size: 2.2rem; font-weight: 800; color: white; line-height: 1; }
+    .stat span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.82); font-weight: 600; }
+
+    /* TIMELINE */
+    .timeline { background: var(--cream); padding: 1.5rem 2rem; border-bottom: 2px solid #e8ddd0; overflow-x: auto; scrollbar-width: none; }
+    .timeline::-webkit-scrollbar { display: none; }
+    .tl-inner { display: flex; align-items: center; justify-content: center; min-width: max-content; margin: 0 auto; }
+    .tl-stop { text-align: center; padding: 0 0.8rem; }
+    .tl-flag { font-size: 1.5rem; display: block; }
+    .tl-city { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); }
+    .tl-nights { font-size: 0.6rem; color: #999; }
+    .tl-dates { font-size: 0.58rem; color: var(--orange); font-weight: 600; }
+    .tl-arrow { color: #ccc; font-size: 1.1rem; padding: 0 0.2rem; }
+    .tl-mode { font-size: 0.5rem; color: #bbb; display: block; text-align: center; }
+
+    /* CITY HERO */
+    .city-hero { position: relative; height: 72vh; min-height: 460px; display: flex; align-items: flex-end; overflow: hidden; }
+    .city-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .city-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.18) 55%, transparent 100%); }
+    .city-hero-content { position: relative; z-index: 2; padding: 2.5rem 2rem; width: 100%; max-width: 900px; margin: 0 auto; }
+    .city-eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 0.4rem; }
+    .city-hero h2 { font-size: clamp(2.8rem, 8vw, 5.5rem); color: white; font-weight: 800; line-height: 1; margin-bottom: 0.6rem; text-shadow: 0 2px 24px rgba(0,0,0,0.5); }
+    .city-hero-tagline { font-size: 1rem; color: rgba(255,255,255,0.82); font-style: italic; margin-bottom: 1rem; }
+    .city-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .chip { background: rgba(255,255,255,0.16); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.28); color: white; padding: 0.28rem 0.85rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 600; }
+
+    /* CITY CONTENT */
+    .city-content { padding: 3rem 0; }
+    .city-content.cream { background: #fdf6f0; }
+    .city-content.pink { background: #fdf0f5; }
+    .city-content.blue { background: #f0f6ff; }
+    .city-content.warm { background: #fffaf4; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* PHOTO GRID */
+    .photo-grid { display: grid; gap: 0.6rem; margin-bottom: 2rem; border-radius: 10px; overflow: hidden; }
+    .pg-2 { grid-template-columns: 1fr 1fr; }
+    .pg-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .pg-21 { grid-template-columns: 2fr 1fr; }
+    .pg-12 { grid-template-columns: 1fr 2fr; }
+    .photo-grid img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .photo-grid img.tall { height: 280px; }
+
+    /* DAY CARDS */
+    .days { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+    .day-card { background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.07); overflow: hidden; }
+    .day-head { background: var(--navy); color: white; padding: 0.65rem 1.2rem; display: flex; align-items: center; justify-content: space-between; }
+    .day-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .day-theme { font-size: 0.75rem; opacity: 0.55; font-style: italic; }
+    .day-body { padding: 0.85rem 1.2rem; }
+    .act { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.55rem 0; border-bottom: 1px solid #f3ede5; }
+    .act:last-child { border-bottom: none; }
+    .badge { display: inline-flex; align-items: center; gap: 0.2rem; padding: 0.18rem 0.55rem; border-radius: 1rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+    .bc { background: #ede6f5; color: #7c4dac; }
+    .bf { background: #fff0e6; color: #c05c20; }
+    .bo { background: #e6f4ea; color: #2e7d32; }
+    .bb { background: #e3f2fd; color: #1565c0; }
+    .act-inner { flex: 1; }
+    .act-time { font-size: 0.67rem; font-weight: 700; color: var(--orange); letter-spacing: 0.04em; }
+    .act-name { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+    .act-desc { font-size: 0.79rem; color: var(--mid); line-height: 1.5; margin-top: 0.1rem; }
+
+    /* FUN FACTS */
+    .facts-band { background: var(--navy); padding: 2.5rem 1.5rem; }
+    .facts-band h3 { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; margin-bottom: 1.25rem; }
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; max-width: 900px; margin: 0 auto; }
+    .fact { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem; }
+    .fact .fi { font-size: 1.4rem; margin-bottom: 0.35rem; }
+    .fact .ft { font-size: 0.8rem; font-weight: 700; color: var(--gold); margin-bottom: 0.3rem; }
+    .fact p { font-size: 0.76rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+    /* TRANSPORT */
+    .transport { background: linear-gradient(135deg, var(--orange), var(--amber)); border-radius: 10px; padding: 1rem 1.4rem; margin: 1.5rem 0; display: flex; align-items: center; gap: 0.9rem; color: white; }
+    .transport .ti { font-size: 1.7rem; flex-shrink: 0; }
+    .transport strong { display: block; font-size: 0.88rem; margin-bottom: 0.15rem; }
+    .transport span { font-size: 0.78rem; opacity: 0.85; }
+
+    /* FOOD */
+    .food-section { background: var(--navy); padding: 4rem 2rem; }
+    .food-section h2 { color: var(--gold); font-size: 1.9rem; font-weight: 800; text-align: center; margin-bottom: 0.4rem; }
+    .sec-sub { color: rgba(255,255,255,0.55); font-size: 0.85rem; text-align: center; margin-bottom: 2.5rem; font-style: italic; }
+    .food-city { max-width: 900px; margin: 0 auto 2.5rem; }
+    .food-city h3 { color: white; font-size: 1rem; font-weight: 700; margin-bottom: 0.85rem; }
+    .food-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0.7rem; }
+    .food-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+    .food-card img { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .food-card-body { padding: 0.7rem 0.85rem; }
+    .food-name { font-weight: 700; font-size: 0.82rem; color: white; margin-bottom: 0.15rem; }
+    .mt { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.12rem 0.4rem; border-radius: 0.2rem; margin-bottom: 0.2rem; }
+    .food-card p { font-size: 0.73rem; color: rgba(255,255,255,0.58); line-height: 1.45; }
+
+    /* BEACHES */
+    .beach-section { background: linear-gradient(160deg, #0077b6 0%, #00b4d8 60%, #90e0ef 100%); padding: 4rem 2rem; }
+    .beach-section h2 { color: white; font-size: 1.9rem; font-weight: 800; text-align: center; margin-bottom: 0.4rem; }
+    .beach-section .sec-sub { color: rgba(255,255,255,0.75); }
+    .beach-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.1rem; max-width: 900px; margin: 0 auto; }
+    .beach-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.28); border-radius: 12px; overflow: hidden; color: white; }
+    .beach-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
+    .beach-card-body { padding: 1rem 1.2rem; }
+    .beach-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .beach-meta { font-size: 0.68rem; opacity: 0.7; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .beach-card p { font-size: 0.79rem; opacity: 0.85; line-height: 1.5; }
+
+    /* PHRASES */
+    .phrases-section { background: var(--cream); padding: 4rem 2rem; }
+    .phrases-section h2 { color: var(--navy); font-size: 1.9rem; font-weight: 800; text-align: center; margin-bottom: 0.4rem; }
+    .phrases-section .sec-sub { color: var(--mid); margin-bottom: 2.5rem; text-align: center; font-style: italic; }
+    .phrase-group { max-width: 900px; margin: 0 auto 2.5rem; }
+    .phrase-group h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 0.7rem; }
+    .tip-box { background: #fffde7; border: 1px solid #f9c74f; border-radius: 8px; padding: 0.7rem 1rem; margin-bottom: 0.7rem; font-size: 0.8rem; color: #5a4500; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06); font-size: 0.8rem; }
+    thead tr { background: var(--navy); }
+    thead th { padding: 0.65rem 1rem; text-align: left; color: white; font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    tbody tr { border-bottom: 1px solid #f0ebe3; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 0.58rem 1rem; }
+    tbody td:first-child { font-weight: 700; color: var(--navy); }
+    tbody td:nth-child(2) { color: var(--orange); font-style: italic; font-size: 0.76rem; }
+    tbody td:nth-child(3) { color: var(--mid); }
+
+    /* PACKING */
+    .packing-section { background: white; padding: 4rem 2rem; }
+    .packing-section h2 { color: var(--navy); font-size: 1.9rem; font-weight: 800; text-align: center; margin-bottom: 0.4rem; }
+    .pack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; max-width: 900px; margin: 2rem auto 0; }
+    .pack-card { background: var(--cream); border-radius: 10px; padding: 1.2rem; border-top: 3px solid var(--gold); }
+    .pack-icon { font-size: 1.4rem; margin-bottom: 0.45rem; }
+    .pack-card h3 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 0.65rem; }
+    .pack-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
+    .pack-card li { font-size: 0.78rem; color: #555; display: flex; align-items: flex-start; gap: 0.35rem; line-height: 1.4; }
+    .pack-card li::before { content: "✓"; color: #2e7d32; font-weight: 700; font-size: 0.7rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* MEMORIES */
+    .memories { background: linear-gradient(160deg, #5b7fc0, #c05080, #f0a020); padding: 3rem 2rem; text-align: center; }
+    .memories h2 { color: white; font-size: 1.7rem; font-weight: 800; margin-bottom: 2rem; }
+    .mem-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.1rem; max-width: 800px; margin: 0 auto; }
+    .mem { text-align: center; background: rgba(255,255,255,0.14); border-radius: 10px; padding: 0.85rem 1rem; min-width: 110px; }
+    .mem .mi { font-size: 1.7rem; display: block; margin-bottom: 0.3rem; }
+    .mem .mp { font-size: 0.8rem; font-weight: 700; color: var(--gold); display: block; }
+    .mem .ml { font-size: 0.68rem; color: rgba(255,255,255,0.65); }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.75); text-align: center; padding: 2.5rem 2rem; }
+    footer strong { color: var(--gold); font-size: 1rem; display: block; margin-bottom: 0.35rem; }
+    footer p { font-size: 0.78rem; opacity: 0.55; margin-top: 0.25rem; }
+
+    @media(max-width:640px){
+      nav ul{justify-content:flex-start}
+      .pg-2,.pg-3,.pg-21,.pg-12{grid-template-columns:1fr}
+      .city-hero{height:55vh}
+      .photo-grid img{height:160px}
+    }
+    @media print{
+      nav,.hero-scroll{display:none}
+      .city-hero{height:280px}
+      .hero{height:auto;padding:3rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">A Family Adventure Across 4 Iconic Cities</p>
+    <h1>Daniel and Olivares<br>Family <em>Euro Trip 2026</em></h1>
+    <p class="hero-dates">June 15 – July 2, 2026</p>
+    <div class="hero-tags">
+      <span class="hero-tag">🇬🇧 London</span>
+      <span class="hero-tag">🇫🇷 Paris</span>
+      <span class="hero-tag">🇮🇹 Rome</span>
+      <span class="hero-tag">🇪🇸 Barcelona</span>
+      <span class="hero-tag">18 Days</span>
+      <span class="hero-tag">4 Countries</span>
+    </div>
+  </div>
+  <div class="hero-scroll">↓ &nbsp; Scroll to Explore</div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <ul>
+    <li><a href="#food">Food</a></li>
+    <li><a href="#beaches">Beaches</a></li>
+    <li><a href="#london">London</a></li>
+    <li><a href="#paris">Paris</a></li>
+    <li><a href="#rome">Rome</a></li>
+    <li><a href="#barcelona">Barcelona</a></li>
+    <li><a href="#packing">Packing</a></li>
+  </ul>
+</nav>
+
+<!-- ══ STATS ══ -->
+<div class="stats">
+  <div class="stat"><strong>18</strong><span>Total Days</span></div>
+  <div class="stat"><strong>4</strong><span>Cities</span></div>
+  <div class="stat"><strong>5</strong><span>Flights</span></div>
+  <div class="stat"><strong>1</strong><span>Train</span></div>
+  <div class="stat"><strong>20+</strong><span>Food Spots</span></div>
+  <div class="stat"><strong>2,847</strong><span>Miles</span></div>
+</div>
+
+<!-- ══ TIMELINE ══ -->
+<div class="timeline">
+  <div class="tl-inner">
+    <div class="tl-stop"><span class="tl-flag">✈️</span><span class="tl-city">SFO</span><span class="tl-dates">Jun 15</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">flight</span></div>
+    <div class="tl-stop"><span class="tl-flag">🇬🇧</span><span class="tl-city">London</span><span class="tl-nights">1.5 nights</span><span class="tl-dates">Jun 16–17</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">Eurostar</span></div>
+    <div class="tl-stop"><span class="tl-flag">🇫🇷</span><span class="tl-city">Paris</span><span class="tl-nights">4 nights</span><span class="tl-dates">Jun 18–21</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">flight</span></div>
+    <div class="tl-stop"><span class="tl-flag">🇮🇹</span><span class="tl-city">Rome</span><span class="tl-nights">5 nights</span><span class="tl-dates">Jun 22–26</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">flight</span></div>
+    <div class="tl-stop"><span class="tl-flag">🇪🇸</span><span class="tl-city">Barcelona</span><span class="tl-nights">4 nights</span><span class="tl-dates">Jun 27–30</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">flight</span></div>
+    <div class="tl-stop"><span class="tl-flag">🇬🇧</span><span class="tl-city">London</span><span class="tl-nights">1 night</span><span class="tl-dates">Jul 1</span></div>
+    <div class="tl-arrow">→<span class="tl-mode">flight</span></div>
+    <div class="tl-stop"><span class="tl-flag">🏠</span><span class="tl-city">SFO</span><span class="tl-dates">Jul 2</span></div>
+  </div>
+</div>
+
+<!-- ══ MEMORIES ══ -->
+<div class="memories">
+  <h2>🏆 Top Highlights of the Trip</h2>
+  <div class="mem-grid">
+    <div class="mem"><span class="mi">🗼</span><span class="mp">Eiffel Tower</span><span class="ml">Picnic at Champ de Mars</span></div>
+    <div class="mem"><span class="mi">🍵</span><span class="mp">London Tea Bus</span><span class="ml">Afternoon tea tour</span></div>
+    <div class="mem"><span class="mi">🙏</span><span class="mp">Vatican</span><span class="ml">Sistine Chapel</span></div>
+    <div class="mem"><span class="mi">🏟</span><span class="mp">Colosseum</span><span class="ml">Ancient Rome tour</span></div>
+    <div class="mem"><span class="mi">⛪</span><span class="mp">Sagrada Família</span><span class="ml">Gaudí masterpiece</span></div>
+    <div class="mem"><span class="mi">🌊</span><span class="mp">Tossa de Mar</span><span class="ml">Costa Brava beach</span></div>
+    <div class="mem"><span class="mi">⛵</span><span class="mp">Sunset Sail</span><span class="ml">Barcelona coast</span></div>
+    <div class="mem"><span class="mi">🏰</span><span class="mp">Château de Chantilly</span><span class="ml">Day trip from Paris</span></div>
+  </div>
+</div>
+
+
+<!-- ══ FOOD ══ -->
+<section class="food-section" id="food">
+  <h2>🍽 What We'll Eat Along the Way</h2>
+  <p class="sec-sub">A culinary journey through 4 cities · June 16 – July 2, 2026</p>
+
+  <div class="food-city">
+    <h3>🇬🇧 London</h3>
+    <div class="food-items">
+      <div class="food-card">
+        <img src="trip-images/borough-market.jpg" alt="Borough Market" />
+        <div class="food-card-body"><div class="food-name">Borough Market</div><p>Dozens of stalls with fresh cheeses, meats, seafood, and produce. One of the world's great food markets.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/afternoon-tea.jpg" alt="Afternoon Tea" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="mt">Must Try</div><div class="food-name">Afternoon Tea</div><p>Scones, finger sandwiches, cakes, pastries with tea or coffee. The quintessential British experience.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/fish-and-chips.jpg" alt="Fish and Chips" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">British Pub Food</div><p>Fish &amp; chips, meat pies, bangers &amp; mash — paired with a local ale or bitter at a cozy pub.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-city">
+    <h3>🇫🇷 Paris</h3>
+    <div class="food-items">
+      <div class="food-card">
+        <img src="trip-images/pastries.jpg" alt="French Pastries" />
+        <div class="food-card-body"><div class="mt">Must Try</div><div class="food-name">French Pastries</div><p>Buttery croissants, éclairs, macarons, mille-feuille. Ladurée for macarons, Angelina's for hot chocolate.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/crepes.jpg" alt="Crêpes" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Crêpes</div><p>Sweet and savory — street vendors and sit-down crêperies everywhere. Try Carette or Breizh Café.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/baguettes.jpg" alt="French Baguettes" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Parisian Picnic</div><p>Fresh baguettes, cheese, charcuterie, and wine from Rue Cler market — on the lawn at Champ de Mars.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-city">
+    <h3>🇮🇹 Rome</h3>
+    <div class="food-items">
+      <div class="food-card">
+        <img src="trip-images/pizza.jpg" alt="Roman Pizza" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Roman Pizza</div><p>Wood-fired, thin and crispy. Try pizza al taglio (by the slice) from a street counter.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/carbonara.jpg" alt="Carbonara" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="mt">Must Try</div><div class="food-name">The Four Roman Pastas</div><p>Cacio e Pepe, Carbonara, Amatriciana, Gricia — all built on Pecorino Romano, guanciale, and black pepper.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/gelato.jpg" alt="Gelato" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Gelato</div><p>Denser and silkier than ice cream. Best test of a gelateria: the pistachio. Look for natural colors.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-city">
+    <h3>🇪🇸 Barcelona</h3>
+    <div class="food-items">
+      <div class="food-card">
+        <img src="trip-images/tapas.jpg" alt="Tapas" />
+        <div class="food-card-body"><div class="mt">Must Try</div><div class="food-name">Tapas</div><p>Patatas bravas, croquetas, bombas, boquerones. Eaten standing at a bar counter with cold beer or vermouth.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/seafood.jpg" alt="Fresh Seafood" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Fresh Seafood</div><p>Arroz negro (black rice with squid ink), grilled dorada, and fresh boquerones straight from the Boqueria.</p></div>
+      </div>
+      <div class="food-card">
+        <img src="trip-images/paella.jpg" alt="Paella" style="height:130px;width:100%;object-fit:cover" />
+        <div class="food-card-body"><div class="food-name">Paella</div><p>Traditional Spanish rice dish with saffron, vegetables, and protein — chicken, rabbit, or seafood. Order for the table.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BEACHES ══ -->
+<section class="beach-section" id="beaches">
+  <h2>🌊 Beaches &amp; Day Trips</h2>
+  <p class="sec-sub">Coastal adventures &amp; crystal waters · June 24–30, 2026</p>
+  <div class="beach-cards">
+    <div class="beach-card">
+      <img src="trip-images/santa-marinella.jpg" alt="Santa Marinella" />
+      <div class="beach-card-body">
+        <div class="beach-name">Santa Marinella</div>
+        <div class="beach-meta">📍 Near Rome · June 25 · 45–60 min by train</div>
+        <p>"Pearl of the Tyrrhenian Sea." Sandy shores, turquoise water, mix of free public beach and beach clubs. Great for swimming and sunbathing in the sun.</p>
+      </div>
+    </div>
+    <div class="beach-card">
+      <img src="trip-images/tossa-de-mar2.jpg" alt="Tossa de Mar" />
+      <div class="beach-card-body">
+        <div class="beach-name">Tossa de Mar</div>
+        <div class="beach-meta">📍 Costa Brava · June 29 · ~1.5 hrs from BCN</div>
+        <p>Stunning clear-water beaches framed by a 14th-century medieval castle (Vila Vella). Small sheltered coves with some of the clearest water on the Costa Brava.</p>
+      </div>
+    </div>
+    <div class="beach-card">
+      <img src="trip-images/barceloneta.jpg" alt="Barceloneta" />
+      <div class="beach-card-body">
+        <div class="beach-name">Barceloneta</div>
+        <div class="beach-meta">📍 Barcelona · June 30 · 20 min walk from centre</div>
+        <p>Historic urban beach in the old fishing district. Lively atmosphere, water sports, beach bars (chiringuitos), and excellent seafood. Fun fact: the sand was imported from Egypt in 1992.</p>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;color:rgba(255,255,255,0.7);font-size:0.82rem;margin-top:1.5rem">
+    🕶 Pack sunscreen &nbsp;·&nbsp; 🏖 Bring towels &nbsp;·&nbsp; ⏰ Arrive early for best spots
+  </p>
+</section>
+
+
+<!-- ══════════ LONDON ══════════ -->
+<section id="london">
+  <div class="city-hero">
+    <div class="city-hero-bg" style="background-image:url('trip-images/london-hero.png')"></div>
+    <div class="city-hero-overlay"></div>
+    <div class="city-hero-content">
+      <p class="city-eyebrow">✨ First Stop</p>
+      <h2>London</h2>
+      <p class="city-hero-tagline">Cheers, mate! 🎉</p>
+      <div class="city-chips">
+        <span class="chip">🇬🇧 United Kingdom</span>
+        <span class="chip">June 16–17</span>
+        <span class="chip">1.5 Days</span>
+        <span class="chip">Arrive: Heathrow (LHR)</span>
+        <span class="chip">Nana: 6:50 AM · Bebe + Fam: 10:15 AM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts-band">
+    <h3>Fun Facts: London</h3>
+    <div class="facts-grid">
+      <div class="fact"><div class="fi">🕐</div><div class="ft">Big Ben's Lean</div><p>Due to tunnel excavations, the Elizabeth Tower leans 1.5 feet northwest. Its time is kept accurate using a stack of old English penny coins on the pendulum.</p></div>
+      <div class="fact"><div class="fi">👑</div><div class="ft">The Flag Code</div><p>You can tell if the King is home at Buckingham Palace by the flagpole. Royal Standard = King in residence. Union Jack = King is away.</p></div>
+      <div class="fact"><div class="fi">📚</div><div class="ft">Poets' Corner</div><p>Westminster Abbey's south transept commemorates over 100 writers including Shakespeare, Jane Austen, and Charles Dickens — a hallowed literary space for centuries.</p></div>
+      <div class="fact"><div class="fi">✈️</div><div class="ft">Secret Tunnels</div><p>Legend has it Buckingham Palace has a network of tunnels beneath it connecting to nearby streets, built originally for heating and mail.</p></div>
+    </div>
+  </div>
+  <div class="city-content cream">
+    <div class="container">
+      <div class="photo-grid pg-3" style="margin-bottom:2rem">
+        <img src="trip-images/big-ben.png" alt="Big Ben" />
+        <img src="trip-images/westminster-abbey.png" alt="Westminster Abbey" />
+        <img src="trip-images/buckingham-palace.png" alt="Buckingham Palace" />
+      </div>
+
+      <div class="days">
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 1 — Tuesday, June 16</span>
+            <span class="day-theme">Afternoon Tea Bus · Big Ben · Westminster</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">2:30 PM – 4:00 PM</div>
+                <div class="act-name">Afternoon Tea Bus Tour</div>
+                <div class="act-desc">Double-decker tour with afternoon tea — scones, finger sandwiches, and cakes served while rolling past Big Ben, Houses of Parliament, and Westminster Abbey.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-name">Westminster Abbey</div>
+                <div class="act-desc">Gothic church at the heart of British history since 1066. Don't miss Poets' Corner — Shakespeare, Austen, and Dickens are all commemorated here. 16 royal weddings held here, most recently William and Catherine in 2011.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-name">Big Ben &amp; Buckingham Palace</div>
+                <div class="act-desc">"Big Ben" is actually the 13-ton bell inside the Elizabeth Tower — kept accurate by old English pennies on the pendulum. At Buckingham Palace: if the Royal Standard is flying, the King is home. Watch for the Changing of the Guard.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-name">London Eye</div>
+                <div class="act-desc">Panoramic views of the entire city from the 135-metre observation wheel on the South Bank of the Thames.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 2 — Wednesday, June 17</span>
+            <span class="day-theme">British Museum · Borough Market · Covent Garden</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">10:00 AM – 12:00 PM</div>
+                <div class="act-name">British Museum</div>
+                <div class="act-desc">World-class collection of 8 million objects. Rosetta Stone, Elgin Marbles, Egyptian mummies, and the Lewis Chessmen all under one spectacular roof. Free entry.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Borough Market</div>
+                <div class="act-desc">London's most famous food market — dozens of stalls with fresh cheeses, meats, seafood, and street food. Try the pork belly sandwich or fresh oysters. A foodie highlight of the trip.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-name">Covent Garden</div>
+                <div class="act-desc">Shopping, street performers, boutiques, and one of London's most charming pedestrian squares. A perfect final afternoon before tomorrow's early Eurostar.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid pg-2">
+        <img src="trip-images/borough-market.jpg" alt="Borough Market" />
+        <img src="trip-images/phone-boxes.png" alt="Red Phone Boxes" />
+      </div>
+
+      <div class="transport">
+        <span class="ti">🚄</span>
+        <div>
+          <strong>London → Paris via Eurostar</strong>
+          <span>Jun 18 · Depart St. Pancras 7:30 AM · Arrive Paris Gare du Nord 10:59 AM · ~3h 30min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════ PARIS ══════════ -->
+<section id="paris">
+  <div class="city-hero">
+    <div class="city-hero-bg" style="background-image:url('trip-images/eiffel-seine.png')"></div>
+    <div class="city-hero-overlay"></div>
+    <div class="city-hero-content">
+      <p class="city-eyebrow">✨ Next Stop</p>
+      <h2>Paris</h2>
+      <p class="city-hero-tagline">Bonjour, Eiffel Tower! 🗼</p>
+      <div class="city-chips">
+        <span class="chip">🇫🇷 France</span>
+        <span class="chip">June 18–21</span>
+        <span class="chip">4 Days</span>
+        <span class="chip">Arrive: Gare du Nord 10:59 AM</span>
+        <span class="chip">Depart: Jun 22, CDG 11:40 AM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts-band">
+    <h3>Fun Facts: Paris</h3>
+    <div class="facts-grid">
+      <div class="fact"><div class="fi">🗼</div><div class="ft">The Tower's Seasonal Lean</div><p>The Eiffel Tower tilts away from the sun by up to 7 inches (18 cm) because sunlight only heats one side at a time, expanding that side more than the others.</p></div>
+      <div class="fact"><div class="fi">✈️</div><div class="ft">Arc de Triomphe Flythrough</div><p>Three weeks after WWI's victory parade in 1919, a pilot flew his biplane right through the center of the arch. 660 generals' names are engraved on the inner walls.</p></div>
+      <div class="fact"><div class="fi">🎠</div><div class="ft">Chantilly's Whipped Cream</div><p>The estate invented Crème Chantilly. The Prince of Condé also believed he'd be reincarnated as a horse — so he built his stables as a palace for a royal stallion.</p></div>
+      <div class="fact"><div class="fi">🔥</div><div class="ft">The Eternal Flame</div><p>The flame beneath the Arc de Triomphe has burned continuously since 1923 — rekindled every evening at 6:30 PM without missing a single night, even through WWII occupation.</p></div>
+    </div>
+  </div>
+  <div class="city-content pink">
+    <div class="container">
+      <div class="photo-grid pg-21" style="margin-bottom:2rem">
+        <img src="trip-images/eiffel-sunset.png" alt="Eiffel Tower at Sunset" class="tall" />
+        <img src="trip-images/louvre.png" alt="The Louvre" class="tall" />
+      </div>
+
+      <div class="days">
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 1 — Thursday, June 18</span>
+            <span class="day-theme">Arrival · Eiffel Picnic · Seine Cruise</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-time">10:59 AM</div>
+                <div class="act-name">Arrival + Croissants at Gare du Nord</div>
+                <div class="act-desc">Eurostar arrives. Grab pastries right at the station — this is France, they will be excellent.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-time">11:30 AM</div>
+                <div class="act-name">Rue Cler Market Stroll</div>
+                <div class="act-desc">One of Paris's most charming pedestrian market streets. Load up on baguettes, cheese, charcuterie, and wine for the picnic ahead.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">1:00 PM</div>
+                <div class="act-name">Eiffel Tower Picnic at Champ de Mars 🧺</div>
+                <div class="act-desc">Spread out on the grand lawn facing the Tower. A quintessential Paris moment that no restaurant can beat.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">6:00 PM</div>
+                <div class="act-name">Seine River Cruise 🛢</div>
+                <div class="act-desc">One-hour boat trip past Notre-Dame, the Louvre, Musée d'Orsay, and the Eiffel Tower. The perfect first evening in Paris.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-time">9:00 PM</div>
+                <div class="act-name">Dinner + Crêpes at Carette or Breizh Café</div>
+                <div class="act-desc">Find a terrace with Eiffel views, then stop for sweet or savory crêpes on the walk back to the Airbnb.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 2 — Friday, June 19</span>
+            <span class="day-theme">Louvre · Notre-Dame · Le Marais</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">11:00 AM</div>
+                <div class="act-name">Louvre Museum</div>
+                <div class="act-desc">Mona Lisa, Venus de Milo, Winged Victory. Book timed entry in advance. Focus on the Denon Wing. Allow 3+ hours.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-time">3:00 PM</div>
+                <div class="act-name">Late Lunch in Le Marais</div>
+                <div class="act-desc">Paris's best casual dining neighbourhood — local bistros, falafel on Rue des Rosiers, excellent cafés.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">After lunch</div>
+                <div class="act-name">Notre-Dame Cathedral</div>
+                <div class="act-desc">Rebuilt after the 2019 fire — the restored interior is spectacular. Explore the Île de la Cité surrounding streets.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">5:00 PM</div>
+                <div class="act-name">Walk the Seine + Ice Cream on Île Saint-Louis</div>
+                <div class="act-desc">Berthillon is considered the best ice cream in Paris. The line is worth it.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 3 — Saturday, June 20</span>
+            <span class="day-theme">Day Trip: Château de Chantilly</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-name">Train from Gare du Nord → Chantilly (25 min)</div>
+                <div class="act-desc">Go in the morning. The estate houses France's second-largest antique painting collection — layout unchanged since the 19th century by the owner's decree. The birthplace of Crème Chantilly (whipped cream).</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-name">Forest Walk, Stables &amp; Gardens</div>
+                <div class="act-desc">The Great Stables were built because the Prince of Condé believed he'd be reincarnated as a horse. The formal gardens and moat-surrounded château are breathtaking.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 4 — Sunday, June 21</span>
+            <span class="day-theme">Champs-Élysées · Ladurée · Eiffel Sunset · Live Jazz</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">10:00 AM – 7:00 PM</div>
+                <div class="act-name">Champs-Élysées + Arc de Triomphe + Galeries Lafayette</div>
+                <div class="act-desc">Climb the Arc de Triomphe for city views — the Eternal Flame beneath has burned every evening since 1923, uninterrupted even through WWII. Window shop the designer boutiques.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Ladurée &amp; Angelina's</div>
+                <div class="act-desc">Ladurée for the city's most famous macarons. Angelina's for legendary thick hot chocolate. The perfect afternoon treat.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">8:30 PM – 9:30 PM</div>
+                <div class="act-name">Eiffel Tower Sunset 🌅</div>
+                <div class="act-desc">Book timed entry in advance. Arrive at golden hour — watch daylight fade and the lights come on across the city. Top deck for panoramic views.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Live Jazz Dinner</div>
+                <div class="act-desc">Options: Sunset Sunside (kid-friendly mini-concerts), Caveau de la Huchette (historic jazz club, great for dancing), or Serpent à Plume (restaurant with live jazz).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid pg-3">
+        <img src="trip-images/eiffel-river.jpg" alt="Eiffel Tower from River" />
+        <img src="trip-images/chantilly.png" alt="Château de Chantilly" />
+        <img src="trip-images/chantilly-aerial.png" alt="Chantilly from above" />
+      </div>
+
+      <div class="transport">
+        <span class="ti">✈️</span>
+        <div>
+          <strong>Paris → Rome</strong>
+          <span>Jun 22 · Depart CDG 11:40 AM · Arrive FCO 1:45 PM · ~1h 50min · Air France / Vueling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ PHRASES: FR ══ -->
+<section class="phrases-section" id="phrases-fr">
+  <h2>🗣 Essential Phrases</h2>
+  <p class="sec-sub">A little local language goes a long way — locals genuinely appreciate the effort</p>
+  <div class="phrase-group">
+    <h3>🇫🇷 French — Paris</h3>
+    <div class="tip-box"><strong>💡 Local Tip:</strong> Start every interaction with "Bonjour" — even in a shop. It's considered rude not to greet before asking for anything. Very important!</div>
+    <table>
+      <thead><tr><th>Phrase</th><th>Pronunciation</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Bonjour</td><td>bohn-ZHOOR</td><td>Hello / Good day</td></tr>
+        <tr><td>Bonsoir</td><td>bohn-SWAHR</td><td>Good evening</td></tr>
+        <tr><td>Au revoir</td><td>oh ruh-VWAHR</td><td>Goodbye</td></tr>
+        <tr><td>S'il vous plaît</td><td>seel voo PLAY</td><td>Please</td></tr>
+        <tr><td>Merci</td><td>mair-SEE</td><td>Thank you</td></tr>
+        <tr><td>De rien</td><td>duh ree-EN</td><td>You're welcome</td></tr>
+        <tr><td>Excusez-moi</td><td>ex-kyoo-zay MWAH</td><td>Excuse me</td></tr>
+        <tr><td>Oui / Non</td><td>wee / nohn</td><td>Yes / No</td></tr>
+        <tr><td>Parlez-vous anglais?</td><td>par-lay voo ahn-GLAY</td><td>Do you speak English?</td></tr>
+        <tr><td>L'addition, s'il vous plaît</td><td>la-dee-SYOHN seel voo PLAY</td><td>The bill, please</td></tr>
+        <tr><td>Où sont les toilettes?</td><td>oo sohn lay twa-LET</td><td>Where is the bathroom?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ ROME ══════════ -->
+<section id="rome">
+  <div class="city-hero">
+    <div class="city-hero-bg" style="background-image:url('trip-images/trevi.png')"></div>
+    <div class="city-hero-overlay"></div>
+    <div class="city-hero-content">
+      <p class="city-eyebrow">✨ Next Stop</p>
+      <h2>Roma</h2>
+      <p class="city-hero-tagline">Che Bello! 🏛</p>
+      <div class="city-chips">
+        <span class="chip">🇮🇹 Italy</span>
+        <span class="chip">June 22–26</span>
+        <span class="chip">5 Days</span>
+        <span class="chip">Stay: Airbnb, Aurelio area</span>
+        <span class="chip">Arrive: FCO 1:45 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts-band">
+    <h3>Fun Facts: Rome</h3>
+    <div class="facts-grid">
+      <div class="fact"><div class="fi">🐱</div><div class="ft">Cats are Citizens</div><p>Rome's cats are legally protected "bio-patrimony." At Largo di Torre Argentina — where Julius Caesar was assassinated — there is a famous protected cat sanctuary.</p></div>
+      <div class="fact"><div class="fi">⛲</div><div class="ft">Trevi's Daily Fortune</div><p>~€3,000 is tossed into the Trevi Fountain daily — over $1M/year. The city collects it every morning and donates it to Caritas, which provides food for those in need.</p></div>
+      <div class="fact"><div class="fi">🏟</div><div class="ft">The Lost Marble</div><p>The Colosseum was originally covered in sparkling white marble with bronze statues in the arches. Most was stripped away in the Middle Ages to build St. Peter's Basilica.</p></div>
+      <div class="fact"><div class="fi">🕳</div><div class="ft">The Pantheon's Open Roof</div><p>The 27-foot oculus is the building's only light source. When it rains inside the Pantheon, the floor's hidden drains whisk the water away.</p></div>
+      <div class="fact"><div class="fi">🚰</div><div class="ft">2,000 Fountains</div><p>Rome has more fountains than any city on Earth. The small iron nasoni (big noses) on street corners run cold, clean, safe-to-drink water. A lifesaver on a June afternoon!</p></div>
+    </div>
+  </div>
+  <div class="city-content warm">
+    <div class="container">
+      <div class="photo-grid pg-12" style="margin-bottom:2rem">
+        <img src="trip-images/colosseum.png" alt="Colosseum" class="tall" />
+        <img src="trip-images/vatican-interior.png" alt="Vatican" class="tall" />
+      </div>
+
+      <div class="days">
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 1 — Monday, June 22</span>
+            <span class="day-theme">Arrival · Gianicolo · Trastevere</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">5:15 – 6:15 PM</div>
+                <div class="act-name">Terrazza del Gianicolo</div>
+                <div class="act-desc">Taxi up to Rome's best panoramic viewpoint on Janiculum Hill. Sweeping view over the entire city in late afternoon light. A cannon fires here daily at noon.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-time">6:30 PM</div>
+                <div class="act-name">Trastevere Dinner — Ai Marmi</div>
+                <div class="act-desc">Rome's most atmospheric neighbourhood — ivy-draped alleys, candlelit restaurants. Ai Marmi for quick, casual, excellent Roman pizza. Gelato on the walk back.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 2 — Tuesday, June 23</span>
+            <span class="day-theme">Vatican · Pantheon · Spanish Steps · Trevi Fountain</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">9:00 AM</div>
+                <div class="act-name">Vatican Museums &amp; Sistine Chapel</div>
+                <div class="act-desc">Book skip-the-line tickets. Michelangelo's ceiling (1508–1512) is awe-inspiring in person. Gallery of Maps is a bonus highlight. Allow 3+ hours.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-name">Pantheon · Spanish Steps · Piazzas</div>
+                <div class="act-desc">The Pantheon's 27-foot oculus is open to the sky — when it rains inside, hidden drains in the sloped floor whisk the water away. Nearly 2,000 years old.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">Evening</div>
+                <div class="act-name">Trevi Fountain at Night</div>
+                <div class="act-desc">Less crowded after dark, beautifully lit. Toss a coin — roughly €3,000/day is thrown in; the city donates it all to the Caritas food charity.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 3 — Wednesday, June 24</span>
+            <span class="day-theme">Day Trip: Florence</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">8:00 AM</div>
+                <div class="act-name">Frecciarossa → Florence (1.5 hrs)</div>
+                <div class="act-desc">Depart Roma Termini. Grab pastries at the station — this will be a full day.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">10:30 AM</div>
+                <div class="act-name">Accademia — Michelangelo's David</div>
+                <div class="act-desc">17 feet of white marble. Standing in front of it is genuinely moving. Book in advance.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">1:00 PM</div>
+                <div class="act-name">Duomo Complex &amp; Bell Tower</div>
+                <div class="act-desc">Brunelleschi's famous dome, the Baptistery's Gates of Paradise, and the Giotto bell tower. Climb the dome for remarkable views.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">3:00 PM</div>
+                <div class="act-name">Piazzale Michelangelo — Panoramic Views</div>
+                <div class="act-desc">Walk or bus up to the terrace for the iconic postcard view over Florence. Best gelato: Gelateria La Carraia or Gelateria Edoardo — try the pistachio!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 4 — Thursday, June 25</span>
+            <span class="day-theme">Beach Day: Santa Marinella 🏖</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bb">🌊 Beach</span>
+              <div class="act-inner">
+                <div class="act-time">8:00 AM – 4:00 PM</div>
+                <div class="act-name">Santa Marinella — "Pearl of the Tyrrhenian Sea"</div>
+                <div class="act-desc">45–60 minutes by train from Rome. Sandy shores, turquoise water, mix of free beach and rentable beach clubs. Great for swimming and sunbathing. Return to Rome by 4pm.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 5 — Friday, June 26</span>
+            <span class="day-theme">Colosseum · Roman Forum · Departure</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">9:00 AM</div>
+                <div class="act-name">Colosseum &amp; Roman Forum</div>
+                <div class="act-desc">Book combined timed entry with arena floor access. Originally covered in sparkling white marble — most was stripped away in the Middle Ages to build St. Peter's Basilica. Allow 2.5 hours.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">3:00 PM</div>
+                <div class="act-name">Low-Effort Afternoon (choose one)</div>
+                <div class="act-desc">Villa Borghese gardens, Monti neighbourhood browsing, or the Secret Keyhole at Knights of Malta (peek through the gate for a perfectly framed view of St. Peter's dome).</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">5:50 PM</div>
+                <div class="act-name">Nana's Flight to London ✈️</div>
+                <div class="act-desc">Nana departs for London. Rest of the group continues to Barcelona tomorrow morning.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid pg-3">
+        <img src="trip-images/rome-sunset.png" alt="Rome Sunset" />
+        <img src="trip-images/rome-fountain.png" alt="Nasoni Fountain" />
+        <img src="trip-images/santa-marinella.jpg" alt="Santa Marinella Beach" />
+      </div>
+
+      <div class="transport">
+        <span class="ti">✈️</span>
+        <div>
+          <strong>Rome → Barcelona</strong>
+          <span>Jun 27 · Depart FCO 10:25 AM · Arrive BCN 12:25 PM · ~1h 50min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ PHRASES: IT ══ -->
+<section class="phrases-section" id="phrases-it">
+  <h2>🗣 Essential Phrases</h2>
+  <p class="sec-sub">A little local language goes a long way — locals genuinely appreciate the effort</p>
+  <div class="phrase-group">
+    <h3>🇮🇹 Italian — Rome</h3>
+    <div class="tip-box"><strong>💡 Local Tip:</strong> Use "Ciao" casually with friends. Use "Buongiorno" or "Mi scusi" with strangers and shopkeepers.</div>
+    <table>
+      <thead><tr><th>Phrase</th><th>Pronunciation</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Ciao</td><td>CHOW</td><td>Hi / Bye (informal)</td></tr>
+        <tr><td>Buongiorno</td><td>bwohn-JOR-noh</td><td>Good morning / Good day</td></tr>
+        <tr><td>Buonasera</td><td>bwoh-nah-SAY-rah</td><td>Good evening</td></tr>
+        <tr><td>Arrivederci</td><td>ah-ree-veh-DAIR-chee</td><td>Goodbye</td></tr>
+        <tr><td>Per favore</td><td>pair fah-VOH-ray</td><td>Please</td></tr>
+        <tr><td>Grazie</td><td>GRAHT-see-ay</td><td>Thank you</td></tr>
+        <tr><td>Prego</td><td>PRAY-goh</td><td>You're welcome</td></tr>
+        <tr><td>Mi scusi</td><td>mee SKOO-zee</td><td>Excuse me</td></tr>
+        <tr><td>Sì / No</td><td>see / noh</td><td>Yes / No</td></tr>
+        <tr><td>Parla inglese?</td><td>PAR-lah een-GLAY-zay</td><td>Do you speak English?</td></tr>
+        <tr><td>Il conto, per favore</td><td>eel KOHN-toh pair fah-VOH-ray</td><td>The bill, please</td></tr>
+        <tr><td>Dov'è il bagno?</td><td>doh-VAY eel BAHN-yoh</td><td>Where is the bathroom?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ BARCELONA ══════════ -->
+<section id="barcelona">
+  <div class="city-hero">
+    <div class="city-hero-bg" style="background-image:url('trip-images/park-guell.png')"></div>
+    <div class="city-hero-overlay"></div>
+    <div class="city-hero-content">
+      <p class="city-eyebrow">✨ Last Stop</p>
+      <h2>Barcelona</h2>
+      <p class="city-hero-tagline">¡Vamos a España! 🎉</p>
+      <div class="city-chips">
+        <span class="chip">🇪🇸 Spain</span>
+        <span class="chip">June 27–30</span>
+        <span class="chip">4 Days</span>
+        <span class="chip">Stay: Eixample neighbourhood</span>
+        <span class="chip">Arrive: BCN 12:25 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts-band">
+    <h3>Fun Facts: Barcelona</h3>
+    <div class="facts-grid">
+      <div class="fact"><div class="fi">🏖</div><div class="ft">Egyptian Beaches</div><p>Barcelona had no beaches until 1992! Before the Olympics, the coastline was industrial. The city imported tons of sand — some from Egypt — to create 4.5km of beach.</p></div>
+      <div class="fact"><div class="fi">🗽</div><div class="ft">A Statue of Liberty</div><p>Barcelona has its own original Statue of Liberty — one of only three in the world — located inside the beautiful Arús Library.</p></div>
+      <div class="fact"><div class="fi">⛪</div><div class="ft">God's Height Limit</div><p>Gaudí believed no man-made structure should surpass God's creation, so the central Sagrada Família tower is designed to be exactly 1 meter shorter than Montjuïc Hill.</p></div>
+      <div class="fact"><div class="fi">🪑</div><div class="ft">The Ergonomic Bench</div><p>Gaudí designed Parc Güell's mosaic bench by having a worker sit in wet plaster to get the perfect human back shape — then built the curves around the impression.</p></div>
+      <div class="fact"><div class="fi">⏳</div><div class="ft">Slower than the Pyramids</div><p>Construction on Sagrada Família began in 1882 — it has officially taken longer to build than the Great Pyramids of Giza, which only took about 20 years.</p></div>
+    </div>
+  </div>
+  <div class="city-content blue">
+    <div class="container">
+      <div class="photo-grid pg-2" style="margin-bottom:2rem">
+        <img src="trip-images/sagrada-interior.png" alt="Sagrada Família Interior" class="tall" />
+        <img src="trip-images/park-guell2.png" alt="Park Güell" class="tall" />
+      </div>
+
+      <div class="days">
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 1 — Saturday, June 27</span>
+            <span class="day-theme">Arrival · Neighbourhood Exploring</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">Afternoon (2–3 hrs)</div>
+                <div class="act-name">Neighbourhood Hopping Walking Tour</div>
+                <div class="act-desc">Three contrasting areas: Eixample (Modernist grid, wide boulevards), Gothic Quarter (medieval labyrinth with Roman ruins underfoot), and Las Ramblas (Barcelona's famous tree-lined promenade).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 2 — Sunday, June 28</span>
+            <span class="day-theme">Sagrada Família · Hop-On Hop-Off · Parc Güell</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-time">10:30 AM</div>
+                <div class="act-name">Sagrada Família + Passion Tower</div>
+                <div class="act-desc">Gaudí hated straight lines — the pillars inside look like a stone forest branching toward the ceiling. Construction began in 1882, longer than the Great Pyramids took. Book tower access well in advance.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Lunch: Los Bellota or Casa Angela</div>
+                <div class="act-desc">Both are excellent spots near Sagrada Família for traditional Catalan and Spanish dishes.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bc">🏛 Culture</span>
+              <div class="act-inner">
+                <div class="act-name">Hop-On Hop-Off Tour or Parc Güell</div>
+                <div class="act-desc">Gaudí's Parc Güell — originally a failed luxury housing project. The famous mosaic bench was ergonomically shaped by Gaudí having a worker sit in wet plaster to perfect the curves.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 3 — Monday, June 29</span>
+            <span class="day-theme">Tossa de Mar · Sunset Sail</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bb">🌊 Beach</span>
+              <div class="act-inner">
+                <div class="act-time">Morning</div>
+                <div class="act-name">Tossa de Mar — Costa Brava</div>
+                <div class="act-desc">Crystal-clear water framed by a 14th-century medieval castle (Vila Vella). Small sheltered coves, some of the clearest water on the Costa Brava.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">Alternative</div>
+                <div class="act-name">Montserrat Mountain Monastery ⛰</div>
+                <div class="act-desc">Dramatic mountain monastery 1 hour from Barcelona. Cable car rides, wine tasting, and spectacular ridge views.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">Evening</div>
+                <div class="act-name">Sunset Sail Around Barcelona ⛵</div>
+                <div class="act-desc">Two-hour sail along the Barcelona coastline with cava and snacks included. Watch the sun set behind Montjuïc while the city lights come on.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-head">
+            <span class="day-label">Day 4 — Tuesday, June 30</span>
+            <span class="day-theme">Parc Güell · Beach Day · Boqueria · El Nacional</span>
+          </div>
+          <div class="day-body">
+            <div class="act">
+              <span class="badge bo">🌿 Outdoor</span>
+              <div class="act-inner">
+                <div class="act-time">Morning</div>
+                <div class="act-name">Parc Güell — Gaudí's Colorful Mosaic Park</div>
+                <div class="act-desc">The fairy-tale entrance pavilions (inspired by Hansel &amp; Gretel) are covered in trencadís mosaic. The main terrace view over Barcelona is excellent.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bb">🌊 Beach</span>
+              <div class="act-inner">
+                <div class="act-name">Beach Day</div>
+                <div class="act-desc">Choose your vibe: Bogatell (quieter, local), Nova Icaria (family-friendly), or Barceloneta (lively, historic fishing district). All have clean, warm water.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Lunch: La Boqueria Market</div>
+                <div class="act-desc">Barcelona's iconic covered market. Fresh fruit, jamón, Iberian cheese, seafood stools. Arrive before 10am to beat crowds.</div>
+              </div>
+            </div>
+            <div class="act">
+              <span class="badge bf">🍽 Food</span>
+              <div class="act-inner">
+                <div class="act-name">Final Dinner: El Nacional</div>
+                <div class="act-desc">Grand multi-concept food hall in a restored garage near Passeig de Gràcia. Jamón ibérico, Spanish tortilla, fresh seafood tapas. The perfect farewell meal.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid pg-3">
+        <img src="trip-images/barceloneta.jpg" alt="Barceloneta Beach" />
+        <img src="trip-images/tossa-de-mar.jpg" alt="Tossa de Mar" />
+        <img src="trip-images/barceloneta2.jpg" alt="Barcelona Beachfront" />
+      </div>
+
+      <div class="transport">
+        <span class="ti">✈️</span>
+        <div>
+          <strong>Barcelona → London → San Francisco</strong>
+          <span>Jun 30: BCN 2:55 PM → LHR 4:15 PM · Jul 1: 1 night London · Jul 2: LHR 10:55 AM → SFO 6:35 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ PHRASES: ES ══ -->
+<section class="phrases-section" id="phrases-es">
+  <h2>🗣 Essential Phrases</h2>
+  <p class="sec-sub">A little local language goes a long way — locals genuinely appreciate the effort</p>
+  <div class="phrase-group">
+    <h3>🇪🇸 Spanish &amp; Catalan — Barcelona</h3>
+    <div class="tip-box"><strong>💡 Local Tip:</strong> Try even one word of Catalan — "Gràcies!" (GRAH-see-us). Locals truly appreciate the effort.</div>
+    <table>
+      <thead><tr><th>Spanish / Catalan</th><th>Pronunciation</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Hola / Hola</td><td>OH-lah</td><td>Hello</td></tr>
+        <tr><td>Buenos días / Bon dia</td><td>BWAY-nohs DEE-ahs / bohn DEE-ah</td><td>Good morning</td></tr>
+        <tr><td>Buenas tardes / Bona tarda</td><td>BWAY-nahs TAR-days / BOH-nah TAR-dah</td><td>Good afternoon/evening</td></tr>
+        <tr><td>Adiós / Adéu</td><td>ah-dee-OHS / ah-DAY-oo</td><td>Goodbye</td></tr>
+        <tr><td>Por favor / Si us plau</td><td>por fah-VOR / see oos PLOW</td><td>Please</td></tr>
+        <tr><td>Gracias / Gràcies</td><td>GRAH-see-ahs / GRAH-see-us</td><td>Thank you</td></tr>
+        <tr><td>De nada / De res</td><td>day NAH-dah / duh RES</td><td>You're welcome</td></tr>
+        <tr><td>Perdona</td><td>pair-DOH-nah</td><td>Excuse me</td></tr>
+        <tr><td>Sí / No</td><td>see / noh</td><td>Yes / No</td></tr>
+        <tr><td>¿Habla inglés? / Parla anglès?</td><td>AH-blah een-GLES / PAR-lah ahn-GLES</td><td>Do you speak English?</td></tr>
+        <tr><td>La cuenta / El compte</td><td>lah KWEN-tah / el KOHM-teh</td><td>The bill, please</td></tr>
+        <tr><td>¿Dónde está el baño?</td><td>DON-day el BAHN-yoh</td><td>Where is the bathroom?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ PACKING ══ -->
+<section class="packing-section" id="packing">
+  <h2>🧳 Final Reminders</h2>
+  <p style="text-align:center;color:#888;font-size:0.85rem;margin-top:0.3rem;font-style:italic">Pack light · Travel smart · A few notes before takeoff!</p>
+  <div class="pack-grid">
+    <div class="pack-card">
+      <div class="pack-icon">✈️</div>
+      <h3>Carry-On Essentials</h3>
+      <ul>
+        <li>Passport</li>
+        <li>Travel adapters for EU &amp; UK</li>
+        <li>TSA locks (if desired)</li>
+        <li>Fanny pack / day bag</li>
+        <li>Comfortable walking shoes</li>
+        <li>Sandals</li>
+        <li>Hat + sunglasses</li>
+        <li>Earbuds and/or ear plugs</li>
+        <li>Books or entertainment</li>
+        <li>Medications and small essentials</li>
+      </ul>
+    </div>
+    <div class="pack-card">
+      <div class="pack-icon">📋</div>
+      <h3>Documents &amp; Logistics</h3>
+      <ul>
+        <li>Bring photocopies of travel docs</li>
+        <li>Send digital copies to Burton and Dom</li>
+        <li>Staying in Airbnbs — pack for laundry, not two full weeks</li>
+        <li>Avoid checking bags as much as possible</li>
+        <li>Keep valuables in your personal item</li>
+        <li>Review this itinerary before departure</li>
+      </ul>
+    </div>
+    <div class="pack-card">
+      <div class="pack-icon">👕</div>
+      <h3>Clothes &amp; Comfort</h3>
+      <ul>
+        <li>Plane outfit: comfy sweats + socks (shoes come off!)</li>
+        <li>A few nicer outfits for city walking and dinners</li>
+        <li>Light rain layer</li>
+        <li>Swimsuit + beach towel</li>
+        <li>Good walking shoes are non-negotiable</li>
+      </ul>
+    </div>
+    <div class="pack-card">
+      <div class="pack-icon">📱</div>
+      <h3>Tech &amp; Money</h3>
+      <ul>
+        <li>EU roaming eSIM (Airalo works well)</li>
+        <li>All 3 countries use Euro</li>
+        <li>Keep €50–100 cash for markets and small spots</li>
+        <li>Contactless card payment is widely accepted</li>
+        <li>Avoid airport currency exchange booths</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <strong>Daniel and Olivares Family Euro Trip 2026</strong>
+  <p>June 15 – July 2, 2026 &nbsp;·&nbsp; London · Paris · Rome · Barcelona</p>
+  <p>Cheers! / Bon Appétit! / Buon Appetito! / Buen Provecho! &nbsp;·&nbsp; Best trip ever! ❤️</p>
+</footer>
+
+
+</body>
+</html>
